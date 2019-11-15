@@ -1,0 +1,20 @@
+{% extends 'template.html' %}
+
+{% block head %}
+<title>CRUD Clientes</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 style="text-align: center;">Atualizar Cliente</h1>
+ 
+  <form action="/atualizar/{{cliente.id}}" method="POST">
+    <input type="text" name="name" id="name" value="{{cliente.name}}">
+    <input type="text" name="address" id="address" value="{{cliente.address}}">
+    <input type="text" name="phone" id="phone" value="{{cliente.phone}}">
+    <input type="email" name="email" id="email" value="{{cliente.email}}">
+    <input type="submit" value="Atualizar Cliente">
+  </form>
+
+</div>
+{% endblock %}

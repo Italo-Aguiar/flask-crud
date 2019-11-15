@@ -1,0 +1,42 @@
+* {
+  text-decoration: none;
+}
+
+body, html {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  width: 400px;
+}
+
+table, td, th {
+  border: 1px solid #aaa;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  height: 40px;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+
+form {
+  margin-top: 20px;
+  margin-left: 23%;
+}
+
+
+.container {
+  width: 70%;
+}

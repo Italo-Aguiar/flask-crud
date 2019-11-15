@@ -1,0 +1,49 @@
+{% extends 'template.html' %}
+
+{% block head %}
+<title>CRUD Clientes</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 style="text-align: center;">Clientes Cadastrados</h1>
+
+  {% if clientes|length < 1 %}
+  <h3 style="text-align: center;">Nenhum cliente cadastrado. Cadastre abaixo!</h3>
+  {% else %}
+
+  <table>
+    <tr>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Telefone</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+
+    {% for cliente in clientes %}
+      <tr>
+        <td>{{cliente.name}}</td>
+        <td>{{cliente.address}}</td>
+        <td>{{cliente.phone}}</td>
+        <td>{{cliente.email}}</td>
+        <td>
+          <a href="/atualizar/{{cliente.id}}">Atualizar</a>
+          <br>
+          <a href="/excluir/{{cliente.id}}">Excluir</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  <form action="/" method="POST">
+    <input type="text" name="name" id="name" placeholder="Nome Completo">
+    <input type="text" name="address" id="address" placeholder="Endereço">
+    <input type="text" name="phone" id="phone" placeholder="119999999">
+    <input type="email" name="email" id="email" placeholder="exemplo@exemplo.com">
+    <input type="submit" value="Cadastrar Cliente">
+  </form>
+
+</div>
+{% endblock %}
