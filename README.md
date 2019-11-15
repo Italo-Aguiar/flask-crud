@@ -1,5 +1,5 @@
 # flask-crud
-Para testar o projeto (imaginando que você tenha python 3.X instalado):
+Para testar o projeto é necessário ter python 3.x instalado.
 
 Abra o terminal, navegue até a pasta raíz do projeto e entre no ambiente virtual:
 
