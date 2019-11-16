@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__) #instanciando Flask
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' #define um caminho para o arquivo de db, na pasta do projeto
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clientes.db' #define um caminho para o arquivo de db, na pasta do projeto
 
 db = SQLAlchemy(app)
 
@@ -39,17 +39,17 @@ def index():
       return redirect('/')
 
     except:
-
       return 'Houve um erro ao cadastrar novo cliente.'
 
   else:
     clientes = Cliente.query.order_by(Cliente.datetime).all()
     return render_template('index.html', clientes=clientes) #retorna a página index.html dentro da pasta de templates
 
-@app.route('/excluir/<int:id>')
+@app.route('/excluir/<int:id>') #definindo comportamento da rota excluir
 def delete(id):
-  cliente = Cliente.query.get_or_404(id)
+  cliente = Cliente.query.get_or_404(id) #pega o objeto cliente do banco de dados com o id ou recebe 404
 
+  #exluindo cliente do banco de dados
   try:
     db.session.delete(cliente)
     db.session.commit()
@@ -59,16 +59,18 @@ def delete(id):
     return 'Houve um erro ao excluir o cliente.'
 
 
-@app.route('/atualizar/<int:id>', methods=['POST', 'GET'])
+@app.route('/atualizar/<int:id>', methods=['POST', 'GET']) #definindo comportamento da rota atualizar
 def atualizar(id):
-  cliente = Cliente.query.get_or_404(id)
+  cliente = Cliente.query.get_or_404(id) #pega o objeto cliente do banco de dados com o id ou recebe 404
 
   if request.method == 'POST':
+    #atualiza dados do cliente no banco de dados com os dados fornecidos no formulário enviado
     cliente.name = request.form['name']
     cliente.address = request.form['address']
     cliente.phone = request.form['phone']
     cliente.email = request.form['email']
 
+    #comita alteração no banco de dados
     try:
       db.session.commit()
       return redirect('/')
